@@ -1,0 +1,130 @@
+/*
+  PROYECTO 9: TOOLTIP UI
+
+  explicación a la izquierda y menú Home · Projects · Blog a la derecha.
+*/
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #fff;
+    color: #171717;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Marco grande redondeado. */
+.marco {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 36px;
+    width: min(1000px, 100%);
+    min-height: 245px;
+    padding: 48px 7%;
+    border: 2px solid #292929;
+    border-radius: 22px;
+    background: #fff;
+}
+
+/* Texto de ayuda ubicado a la izquierda. */
+.indicacion {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.4;
+}
+
+/* Mantiene las opciones de navegación en una fila. */
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    white-space: nowrap;
+}
+
+/* Este enlace será la referencia para ubicar la tooltip. */
+.item {
+    position: relative;
+    display: inline-block;
+    padding: 8px 0;
+    color: #171717;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    text-decoration: none;
+    outline-offset: 5px;
+}
+.item:hover, .item:focus-visible { color: #555; }
+
+/*
+  La tooltip se posiciona encima del enlace.
+  bottom la eleva; opacity y visibility la ocultan al inicio.
+*/
+.tooltip {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: calc(100% + 22px);
+    transform: translate(-50%, 8px) scale(.98);
+    width: max-content;
+    max-width: min(360px, 80vw);
+    padding: 17px 24px;
+    border-radius: 15px;
+    background: #000;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: center;
+    white-space: normal;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* Transición para que el mensaje aparezca suavemente. */
+    transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+}
+
+/* Triángulo negro debajo de la caja, apuntando al enlace. */
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-top-color: #000;
+}
+
+/* Se muestra al pasar el cursor o al enfocar con el teclado. */
+.item:hover .tooltip,
+.item:focus-visible .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0) scale(1);
+}
+
+/* Puntos grises separan las opciones. */
+.separador { color: #bdbdbd; font-size: 1.2rem; }
+
+/* En pantallas pequeñas, la explicación pasa encima del menú. */
+@media (max-width: 650px) {
+    .marco {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 28px;
+        min-height: 280px;
+        padding: 34px 8%;
+    }
+    .menu { align-self: center; gap: 12px; }
+    .tooltip { padding: 12px 15px; font-size: .9rem; }
+}
+
+/* Respeta la preferencia de reducir movimiento del dispositivo. */
+@media (prefers-reduced-motion: reduce) {
+    .tooltip { transition: none; }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 9 - Tooltip UI</title>
+    <!-- Conecta este archivo con los estilos CSS. -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="marco">
+        <!-- Texto explicativo colocado a la izquierda. -->
+        <p class="indicacion">Bienvenido <br> a este sitio web.</p>
+
+        <!-- Menú de ejemplo: al pasar el cursor aparece una tooltip encima. -->
+        <nav class="menu" aria-label="Main navigation">
+            <a href="#home" class="item">Home
+                <span class="tooltip" role="tooltip">Información general</span>
+        <!--span:es un contenedor en línea que sirve para agrupar una parte específica de un texto o elementos dentro de una misma línea-->
+        <!--a:sirve para crear hipervínculos o enlaces que conectan una página web con otra-->
+            </a>
+            <span class="separador" aria-hidden="true">·</span>
+            <a href="#projects" class="item">Projects
+                <span class="tooltip" role="tooltip">Proyectos realizados</span>
+            </a>
+            <span class="separador" aria-hidden="true">·</span>
+            <a href="#blog" class="item">Blog
+                <span class="tooltip" role="tooltip">Información  artículos o publicaciones </span>
+            </a>
+        </nav>
+    </main>
+</body>
+</html>
